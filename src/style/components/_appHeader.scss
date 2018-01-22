@@ -1,0 +1,26 @@
+.app-header{
+  padding: 9px;
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+  .download-btn{
+    display: block;
+    border-radius: 3px;
+    border: 1px solid #f25555;
+    color: #f25555;
+    font-size: 12px;
+    text-align: center;
+    flex: 1;
+    margin-left: 11px;
+    height: 32px;
+    line-height: 32px;
+    float: left;
+  }
+  .js-download{
+    background-color: #f25555;
+    color: #fff;
+  }
+}
