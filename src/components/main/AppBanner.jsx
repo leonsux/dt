@@ -39,9 +39,9 @@ class AppBanner extends Component {
                   onLoad={() => {
                     {/*// fire window resize event to change height*/}
                     window.dispatchEvent(new Event('resize'));
-                    this.setState({ imgHeight: 'auto' });
+                    {/*this.setState({ imgHeight: 'auto' });*/}
                   }}
-                  onError={() => { this.refs[val.album_id].src='https://b-ssl.duitang.com/uploads/item/201801/16/20180116180325_ZFa8c.jpeg' }}
+                  onError={() => { this.refs[val.album_id].src='https://file.digitaling.com/eImg/uimages/20150907/1441607540794971.gif' }}
                 />
                 <span style={{ position: 'absolute', zIndex: '2', left: '12px',bottom: '25px',color: '#fff' }}>
                   <span style={{ display: 'block', fontSize: '12px'}}>{val.timestamp}</span>
@@ -62,7 +62,7 @@ class AppBanner extends Component {
     })
     .then(res =>{
       this.setState({banners: res.data.data.object_list})
-      console.log(res)
+      // console.log(res)
     })
   }
 }
