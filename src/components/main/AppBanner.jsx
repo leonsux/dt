@@ -16,10 +16,10 @@ class AppBanner extends Component {
   render () {
     return (
       <div>
+        {this.state.banners.length?
         <Carousel
-          autoplay={false}
+          autoplay={true}
           infinite
-          selectedIndex={0}
           beforeChange={(from, to) => {}}
           afterChange={index => {}}
         >
@@ -28,28 +28,29 @@ class AppBanner extends Component {
               <a
                 key={val.album_id}
                 href="http://leonsux.top"
-                style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight, position: 'relative' }}
+                style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight}}
               >
-                <span style={{ position: 'absolute', display: 'block', width: '100%', height: '100%', background: '#000', opacity: '0.2'}}></span>
+                <span style={{ position: 'absolute', display: 'block', width: '100%', height: '100%', background: '#000', opacity: '0.2', zIndex: '1'}}></span>
                 <img
+                  ref={val.album_id}
                   src={val.image.slice(0, 70)+'thumb.600_0_c.'+val.image.slice(70)}
                   alt=""
                   style={{ width: '100%', verticalAlign: 'top', height: '100%' }}
                   onLoad={() => {
-                    // fire window resize event to change height
+                    {/*// fire window resize event to change height*/}
                     window.dispatchEvent(new Event('resize'));
-                    {/*this.setState({ imgHeight: 'auto' });*/}
+                    this.setState({ imgHeight: 'auto' });
                   }}
-                  onerror="this.src=''https://upload.jianshu.io/users/upload_avatars/3629578/d80d6cf5-d91b-4409-8561-f1dd2b95f1ec.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120"
+                  onError={() => { this.refs[val.album_id].src='https://b-ssl.duitang.com/uploads/item/201801/16/20180116180325_ZFa8c.jpeg' }}
                 />
-                <span style={{ position: 'absolute', zIndex: '999', left: '12',bottom: '25',color: '#fff' }}>
-                  <span style={{ display: 'block', fontSize: '12'}}>{val.timestamp}</span>
-                  <span style={{ display: 'block', fontSize: '20'}}>{val.title}</span>
+                <span style={{ position: 'absolute', zIndex: '2', left: '12px',bottom: '25px',color: '#fff' }}>
+                  <span style={{ display: 'block', fontSize: '12px'}}>{val.timestamp}</span>
+                  <span style={{ display: 'block', fontSize: '20px'}}>{val.title}</span>
                 </span>
               </a>
             ))
           }
-        </Carousel>
+        </Carousel>:''}
       </div>
     )
   }

@@ -1,0 +1,38 @@
+.list-category-5{
+  background: #fff;
+  overflow: hidden;
+  .row{
+    overflow: hidden;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .row a {
+    position: relative;
+    float: left;
+    display: block;
+    width: 25%;
+    padding: 5% 0;
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+  }
+  .row a .i {
+    display: inline-block;
+    background-image: url(https://b-ssl.duitang.com/uploads/people/201509/28/20150928110746_iVJh2.png);
+    background-size: 288px auto;
+    width: 36px;
+    height: 36px;
+  }
+  .row a .border {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: #e0e0e0;
+  }
+  @for $i from 0 through 7 {
+    .row a .i#{$i} {
+      background-position: -36px*$i 0;
+    }
+  }
+}
