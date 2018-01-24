@@ -3,8 +3,9 @@ import React from 'react'
 import logo from '../../static/imgs/logo.png'
 
 const AppFooter = (props) => {
+  let { isHidden } = props
   return (
-    <footer className="app-footer">
+    <footer className="app-footer slide" style={{bottom: isHidden ? '-100px' : '0'}}>
       <div className="logo">
         <img src={logo} alt="" />
       </div>

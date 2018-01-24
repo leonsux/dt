@@ -11,8 +11,12 @@ class AppPullContent extends Component {
     this.state = {
       itemList: [],
       leftList: [],
-      rightList: []
+      rightList: [],
+      start: 0,
+      limit: 24,
+      isLoading: true
     }
+    this.scrollEvent = this.scrollEvent.bind(this)
   }
   render () {
     let {leftList, rightList} = this.state
@@ -35,18 +39,22 @@ class AppPullContent extends Component {
       </div>
     )
   }
-  componentWillMount () {
+  getData () {
+    this.setState({
+      isLoading: true
+    })
+    let { start, limit, leftList, rightList } = this.state
     axios.get('/ky/napi/index/hot/', {
       params: {
-        start: 0,
-        include_fields:'sender, album',
-        limit: 24,
+        start: start,
+        include_fields:'sender,album',
+        limit: limit,
         _: new Date().getTime()
       }
     }).then(res => {
       let list = res.data.data.object_list
-      let leftArr = []
-      let rightArr = []
+      let leftArr = leftList
+      let rightArr = rightList
       list.forEach((item, index) => {
         if (index % 2 === 0) {
           leftArr.push(item)
@@ -54,30 +62,43 @@ class AppPullContent extends Component {
           rightArr.push(item)
         }
       })
-      this.setState({
-        leftList: leftArr,
-        rightList: rightArr
+      this.setState(state => {
+        return {
+          leftList: leftArr,
+          rightList: rightArr,
+          isLoading: !state.isLoading
+        }
       })
     }).catch(res => {
       alert(res)
     })
+  }
+  componentWillMount () {
+    this.getData()
     // 滚动事件
-    window.onscroll = (e) => {
-      let scrollTop = document.documentElement.scrollTop
-      let clientHeight = document.body.clientHeight
-      let scrollHeight = document.documentElement.scrollHeight
-      if (scrollTop >= scrollHeight - clientHeight - 400) {
-        console.log("底部~")
-      }
+    window.addEventListener('scroll', this.scrollEvent)
+  }
+  scrollEvent () {
+    console.log("别这样", this)
+    if (this.state.isLoading) { return }
+    let scrollTop = document.documentElement.scrollTop
+    let clientHeight = document.body.clientHeight
+    let scrollHeight = document.documentElement.scrollHeight
+    if (scrollTop >= scrollHeight - clientHeight - 1000) {
+      this.setState(state => {
+        return {
+          start: state.start + 24
+        }
+      })
+      this.getData()
     }
+  }
+  componentWillUnmount () {
+    // 切换到其他组件的时候把滚动监听取消掉，不然后果很可怕
+    window.removeEventListener('scroll', this.scrollEvent)
+    // console.log("我要死了")
   }
 }
 
 
 export default AppPullContent
-// 3925
-// {
-//           itemList.length?itemList.map(item => {
-//             return <AppPullItem info={item} />
-//           }):''
-//         }
