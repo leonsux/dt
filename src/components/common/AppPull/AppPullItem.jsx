@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 
-import axios from 'axios'
+import tools from '../../../utils/tools'
+
 
 class AppPullItem extends Component {
   constructor (props) {
     super(props)
+    this.state = {}
   }
   render () {
     let {info} = this.props
     return (
       <div className="pull-item">
         <div className="pull-item-top">
-          <img src={steal(info.photo.path, 'thumb.400_0.')} style={{height: info.photo.height*169.5/info.photo.width}} alt=""/>
+          <img src={tools.steal(info.photo.path, 'thumb.400_0.')} style={{height: info.photo.height*169.5/info.photo.width}} alt=""/>
           <h1>{info.msg}</h1>
           <p>
             <span>★&nbsp;{info.like_count}</span>
@@ -20,8 +21,11 @@ class AppPullItem extends Component {
         </div>
 
         <div className="pull-item-bot">
-          <img src={steal(info.sender.avatar, 'thumb.100_100_c.')} alt=""/>
-          <p>{}</p>
+          <img src={tools.steal(info.sender.avatar, 'thumb.100_100_c.')} alt=""/>
+          <p>
+            <i>{info.sender.username}</i><br/>
+            <span>收集到&nbsp;{info.album.name}</span>
+          </p>
         </div>
       </div>
     )
@@ -29,11 +33,11 @@ class AppPullItem extends Component {
 }
 
 // 转换图片路径
-function steal (url, tag) {
-  let hz = /[^\.]\w*$/.exec(url)[0]
-  let newUrl = url.replace(/[^\.]\w*$/, tag) + hz
-  return newUrl
-}
+// function steal (url, tag) {
+//   let hz = /[^\.]\w*$/.exec(url)[0]
+//   let newUrl = url.replace(/[^\.]\w*$/, tag) + hz
+//   return newUrl
+// }
 
 
 export default AppPullItem

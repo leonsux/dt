@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-
 import axios from 'axios'
 
 import AppPullItem from './AppPullItem'
@@ -23,14 +21,14 @@ class AppPullContent extends Component {
         <div ref="leftList" className="pull-left clear">
           {
             leftList.map(item => {
-              return <AppPullItem info={item} />
+              return <AppPullItem key={item.id} info={item} />
             })
           }
         </div>
         <div ref="rightList" className="pull-right clear">
           {
             rightList.map(item => {
-              return <AppPullItem info={item} />
+              return <AppPullItem key={item.id} info={item} />
             })
           }
         </div>
@@ -63,13 +61,21 @@ class AppPullContent extends Component {
     }).catch(res => {
       alert(res)
     })
-    
+    // 滚动事件
+    window.onscroll = (e) => {
+      let scrollTop = document.documentElement.scrollTop
+      let clientHeight = document.body.clientHeight
+      let scrollHeight = document.documentElement.scrollHeight
+      if (scrollTop >= scrollHeight - clientHeight - 400) {
+        console.log("底部~")
+      }
+    }
   }
 }
 
 
 export default AppPullContent
-
+// 3925
 // {
 //           itemList.length?itemList.map(item => {
 //             return <AppPullItem info={item} />

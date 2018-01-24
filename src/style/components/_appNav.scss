@@ -5,23 +5,22 @@
     overflow: hidden;
     border-bottom: 1px solid #e0e0e0;
   }
-  .row a {
+  .row div {
     position: relative;
     float: left;
-    display: block;
     width: 25%;
     padding: 5% 0;
     font-size: 12px;
     text-align: center;
     color: #666;
   }
-  .row a .i {
+  .row div .i {
     display: inline-block;
     background-size: 288px auto;
     width: 36px;
     height: 36px;
   }
-  .row a .border {
+  .row div .border {
     position: absolute;
     width: 1px;
     height: 100%;
@@ -30,7 +29,7 @@
     background-color: #e0e0e0;
   }
   @for $i from 0 through 7 {
-    .row a .i#{$i} {
+    .row div .i#{$i} {
       background-position: -36px*$i 0;
     }
   }
