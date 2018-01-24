@@ -1,10 +1,12 @@
 import React from 'react'
 
+import logo from '../../static/imgs/logo.png'
+
 const AppFooter = (props) => {
   return (
     <footer className="app-footer">
       <div className="logo">
-        <img src="https://b-ssl.duitang.com/uploads/people/201607/11/20160711113459_iHV3S.png" alt="" />
+        <img src={logo} alt="" />
       </div>
       <div className="foot-btn app-open">App打开</div>
       <div className="foot-btn js-download">下载</div>

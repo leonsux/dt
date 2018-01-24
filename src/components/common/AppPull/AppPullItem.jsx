@@ -12,7 +12,7 @@ class AppPullItem extends Component {
     return (
       <div className="pull-item">
         <div className="pull-item-top">
-          <img src={steal(info.photo.path, 'thumb.400_0.')} alt=""/>
+          <img src={steal(info.photo.path, 'thumb.400_0.')} style={{height: info.photo.height*169.5/info.photo.width}} alt=""/>
           <h1>{info.msg}</h1>
           <p>
             <span>★&nbsp;{info.like_count}</span>
