@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {Link} from 'react-router'
 import navImg from '../../static/imgs/nav.png'
 
 class AppNav extends Component {
@@ -45,7 +45,7 @@ class AppNav extends Component {
           </div> 
           <div> 
             <span className="i i7 more" style={{backgroundImage: `url(${navImg})`}}></span><br/>
-            <span className="txt">更多分类</span> 
+            <Link to="category" className="txt">更多分类</Link> 
           </div> 
         </div>
       </section>
