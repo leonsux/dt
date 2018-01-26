@@ -18,7 +18,6 @@ class AppBlogDetail extends Component {
   }
   render () {
     let { blogInfo, leftList, rightList } = this.state
-    console.log('呵呵：', blogInfo)
     return (
       <div>
         {blogInfo.photo?
@@ -54,14 +53,19 @@ class AppBlogDetail extends Component {
             }
           </div>
         </div>
+
+        {/**/}
+        <div className="recommend">
+          
+        </div>
+
+
       </div>
     )
   }
   getData () {
-    console.log('嘿嘿', this.props)
     let {id} = this.props.params
     let that = this
-    console.log('id', id)
     axios.get('/ky/napi/blog/detail/', {
       params: {
         blog_id: id
@@ -85,11 +89,8 @@ class AppBlogDetail extends Component {
           leftList: [list[0], list[2]],
           rightList: [list[1], list[3]]
         })
-        console.log('相册：', res)
       })
     })
-
-    
   }
   componentWillMount () {
     this.getData()

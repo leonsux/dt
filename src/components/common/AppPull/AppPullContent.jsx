@@ -79,7 +79,6 @@ class AppPullContent extends Component {
     window.addEventListener('scroll', this.scrollEvent)
   }
   scrollEvent () {
-    console.log("别这样", this)
     if (this.state.isLoading) { return }
     let scrollTop = document.documentElement.scrollTop
     let clientHeight = document.body.clientHeight
