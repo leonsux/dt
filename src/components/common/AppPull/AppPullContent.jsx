@@ -3,8 +3,6 @@ import axios from 'axios'
 
 import AppPullItem from './AppPullItem'
 
-import { connect } from 'react-redux'
-
 class AppPullContent extends Component {
   constructor (props) {
     super(props)
@@ -17,11 +15,12 @@ class AppPullContent extends Component {
       isLoading: true
     }
     this.scrollEvent = this.scrollEvent.bind(this)
+    this.getDate = this.getData.bind(this)
   }
   render () {
     let {leftList, rightList} = this.state
     return (
-      <div className="pull-content clear">
+      <div ref="myPull" className="pull-content clear">
         <div ref="leftList" className="pull-left clear">
           {
             leftList.map(item => {
@@ -39,33 +38,53 @@ class AppPullContent extends Component {
       </div>
     )
   }
-  getData () {
+  getData (isChangeTag, path, key) {
     this.setState({
       isLoading: true
     })
-    let { start, limit, leftList, rightList } = this.state
-    let url = '/ky/napi/index/hot/'
+    let outPath = ''
     let cate_key = ''
+    let url = '/ky/napi/index/hot/'
     let include_fields = 'sender,album'
-    console.log("props是:", this.props)
+    let { start, limit, leftList, rightList } = this.state  
+
     if (this.props.outParams) {
+      console.log("列表古来的")
       url = this.props.outParams.url
       include_fields = this.props.outParams.include_fields
+      cate_key = this.props.outParams.cate_key
     }
-    if (this.props.cate_key) {
-      console.log(this.props.cate_key)
-      cate_key = this.props.cate_key
+
+    if (isChangeTag) {
+      console.log("换换")
+      this.setState({
+        itemList: [],
+        leftList: [],
+        rightList: [],
+        start: 0,
+        limit: 24,
+        isLoading: true
+      })
+      leftList = []
+      rightList = []
+      console.log("你们很皮啊：", this.state)
+      outPath = path
+      cate_key = key
     }
+
     // 
+    console.log("请求参数：", start, include_fields, limit, cate_key, outPath)
     axios.get(url, {
       params: {
         start: start,
         include_fields: include_fields,
         limit: limit,
         cate_key: cate_key,
+        path: outPath,
         _: new Date().getTime()
       }
     }).then(res => {
+      console.log("请求原结果：", res.data)
       let list = res.data.data.object_list
       let leftArr = leftList
       let rightArr = rightList
@@ -83,6 +102,7 @@ class AppPullContent extends Component {
           isLoading: !state.isLoading
         }
       })
+      console.log("请求结果", this.state.leftList)
     }).catch(res => {
       alert(res)
     })
@@ -112,25 +132,9 @@ class AppPullContent extends Component {
     window.removeEventListener('scroll', this.scrollEvent)
     // console.log("我要死了")
   }
-  componentWillUpdate () {
-    console.log("刚刚")
-  }
-  changeTag () {
-    alert("被调用了")
-  }
 }
 
-let mapStateToProps = (store) => {
-  return store
-}
-
-let mapDispatchToProps = (dispatch) => {
-  return {
-
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppPullContent)
+export default AppPullContent
 
 
 // https://www.duitang.com/napi/blog/list/by_category/?start=0&include_fields=sender%2Calbum%2Clike_count%2Cmsg&limit=24&cate_key=5017d172705cbe10c0000003&path=&_=1517035030220

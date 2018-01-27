@@ -22,12 +22,12 @@ class AppList extends Component {
           <div className="content">
           {
             listInfo.sub_cates?listInfo.sub_cates.map((item,index) => (
-              <a onClick={() => { this.setState({path: item.path, cate_key: item.id}); console.log(this.refs.myPull) }} key={index} href="javascript:;">#{item.name}</a> 
+              <a onClick={() => { this.setState({path: item.path, cate_key: item.id}); console.log(this.refs.myPull.getData(true, item.path, item.id)) }} key={index} href="javascript:;">#{item.name}</a> 
             )):''
           }
           </div> 
         </section>
-        <AppPullContent changeTag={} ref="myPull" outParams={{url: '/ky/napi/blog/list/by_category/', include_fields: 'sender,album,like_count,msg'}} outPath={this.state.path}  cate_key={this.state.cate_key}></AppPullContent>
+        <AppPullContent ref="myPull" outParams={{url: '/ky/napi/blog/list/by_category/', include_fields: 'sender,album,like_count,msg', cate_key: this.props.params.id}}></AppPullContent>
       </div>
     )
   }
