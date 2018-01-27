@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import AppPullItem from './AppPullItem'
 
-// import AppBanner from './AppBanner'
+import { connect } from 'react-redux'
 
 class AppPullContent extends Component {
   constructor (props) {
@@ -44,11 +44,25 @@ class AppPullContent extends Component {
       isLoading: true
     })
     let { start, limit, leftList, rightList } = this.state
-    axios.get('/ky/napi/index/hot/', {
+    let url = '/ky/napi/index/hot/'
+    let cate_key = ''
+    let include_fields = 'sender,album'
+    console.log("props是:", this.props)
+    if (this.props.outParams) {
+      url = this.props.outParams.url
+      include_fields = this.props.outParams.include_fields
+    }
+    if (this.props.cate_key) {
+      console.log(this.props.cate_key)
+      cate_key = this.props.cate_key
+    }
+    // 
+    axios.get(url, {
       params: {
         start: start,
-        include_fields:'sender,album',
+        include_fields: include_fields,
         limit: limit,
+        cate_key: cate_key,
         _: new Date().getTime()
       }
     }).then(res => {
@@ -72,6 +86,7 @@ class AppPullContent extends Component {
     }).catch(res => {
       alert(res)
     })
+
   }
   componentWillMount () {
     this.getData()
@@ -97,7 +112,26 @@ class AppPullContent extends Component {
     window.removeEventListener('scroll', this.scrollEvent)
     // console.log("我要死了")
   }
+  componentWillUpdate () {
+    console.log("刚刚")
+  }
+  changeTag () {
+    alert("被调用了")
+  }
 }
 
+let mapStateToProps = (store) => {
+  return store
+}
 
-export default AppPullContent
+let mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppPullContent)
+
+
+// https://www.duitang.com/napi/blog/list/by_category/?start=0&include_fields=sender%2Calbum%2Clike_count%2Cmsg&limit=24&cate_key=5017d172705cbe10c0000003&path=&_=1517035030220
+

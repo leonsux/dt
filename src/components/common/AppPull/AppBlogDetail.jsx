@@ -13,11 +13,14 @@ class AppBlogDetail extends Component {
     this.state = {
       blogInfo: {},
       leftList: [],
-      rightList: []
+      rightList: [],
+      relatedBlogs: [],
+      isHiddenBg: true
     }
+    this.scrollEvent = this.scrollEvent.bind(this)
   }
   render () {
-    let { blogInfo, leftList, rightList } = this.state
+    let { blogInfo, leftList, rightList, relatedBlogs } = this.state
     return (
       <div>
         {blogInfo.photo?
@@ -52,20 +55,41 @@ class AppBlogDetail extends Component {
               })
             }
           </div>
+          {this.state.isHiddenBg?'':<div className="bg"></div>}
         </div>
 
         {/**/}
         <div className="recommend">
-          
+          <div className="rec-box">
+          {
+            relatedBlogs.map((item, index) => (
+              <div key={item.id}>
+                <div className="clear">
+                  <span className="l title">{item.name}</span>
+                  <span className="r">{item.like_count}人喜欢</span>
+                </div>
+                <div className="imgs">
+                {
+                  item.covers.map(imgUrl => (
+                    <img src={tools.steal(imgUrl, 'thumb.200_200_c.')} alt=""/>
+                  ))
+                }
+                </div>
+                {!index?<div className="v-l"></div>:''}
+              </div>
+            ))
+            
+          }
+          </div>
+          <div className="more">点击查看更多</div>
         </div>
-
-
       </div>
     )
   }
   getData () {
     let {id} = this.props.params
     let that = this
+    // 获取该页详情
     axios.get('/ky/napi/blog/detail/', {
       params: {
         blog_id: id
@@ -74,6 +98,7 @@ class AppBlogDetail extends Component {
       this.setState({
         blogInfo: res.data.data
       })
+      // 根据该页详情中的album信息获取额外信息
       axios.get('/ky/napi/blog/list/by_root_album/', {
         params: {
           start: 0,
@@ -91,9 +116,38 @@ class AppBlogDetail extends Component {
         })
       })
     })
+    // 获取推广信息
+    axios.get('/ky/napi/album/list/by_related_blog/', {
+      params: {
+        blog_id: id
+      }
+    }).then(res => {
+      that.setState({
+        relatedBlogs: res.data.data.object_list
+      })
+    })
+
   }
   componentWillMount () {
     this.getData()
+    window.addEventListener('scroll', this.scrollEvent)
+  }
+  scrollEvent () {
+    let scrollTop = document.documentElement.scrollTop
+      let clientHeight = document.body.clientHeight
+      let scrollHeight = document.documentElement.scrollHeight
+      if (scrollTop >= scrollHeight - clientHeight - 100) {
+        this.setState({
+          isHiddenBg: false
+        })
+      } else {
+        this.setState({
+          isHiddenBg: true
+        })
+      }
+  }
+  componentWillUnmount () {
+    window.removeEventListener('scroll', this.scrollEvent)
   }
 }
 
