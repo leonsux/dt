@@ -11,7 +11,6 @@ import AppMain from './components/main/AppMain'
 import AppBlogDetail from './components/common/AppPull/AppBlogDetail'
 import AppList from './components/common/AppList'
 import AppCategory from './components/category/AppCategory'
-import AppBlogList from './components/common/AppPull/AppBlogList'
 
 import AppShop from './components/shop/AppShop'
 
@@ -24,8 +23,7 @@ ReactDOM.render(
       <Route path='/' component={App}>
         <IndexRoute component={AppMain} />
         <Route path='/blog/:id' component={AppBlogDetail}></Route>
-        <Route path='category' component={AppCategory}></Route>
-        <Route path="bloglist/:id" component={AppBlogList}></Route>
+        <Route path='/category' component={AppCategory}></Route>
         <Route path='/applist/:id' component={AppList}></Route>
         <Route path='/appshop' component={AppShop}></Route>
       </Route>
