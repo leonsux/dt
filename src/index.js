@@ -11,6 +11,8 @@ import AppMain from './components/main/AppMain'
 import AppBlogDetail from './components/common/AppPull/AppBlogDetail'
 import AppList from './components/common/AppList'
 
+import AppShop from './components/shop/AppShop'
+
 import { Provider } from 'react-redux'
 import store from './store'
 
@@ -21,6 +23,7 @@ ReactDOM.render(
         <IndexRoute component={AppMain} />
         <Route path='/blog/:id' component={AppBlogDetail}></Route>
         <Route path='/applist/:id' component={AppList}></Route>
+        <Route path='/appshop' component={AppShop}></Route>
       </Route>
     </Router>
   </Provider>

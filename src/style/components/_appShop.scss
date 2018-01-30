@@ -1,0 +1,58 @@
+.shop-nav {
+  padding-bottom: 14px;
+  background-color: #fff;
+  > li {
+    width: 20%;
+    padding-top: 13px;
+    padding-bottom: 5px;
+    float: left;
+    font-size: 13px;
+    line-height: 18px;
+    color: #444;
+    text-align: center;
+    img {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto;
+      margin-bottom: 5px;
+    }
+  }
+}
+.sale-entry {
+  background-color: #fff;
+  position: relative;
+}
+.cp-youliao-sale-entry-item {
+  width: 33.3%;
+  height: 150px;
+  text-align: center;
+  float: left;
+  vertical-align: middle;
+  .cp-youliao-sale-entry .cp-youliao-sale-entry-link {
+    position: relative;
+    width: 100%;
+    display: block;
+    height: 100%;
+  }
+  .cp-youliao-sale-entry-title {
+    font-size: 15px;
+    color: #444;
+    line-height: 21px;
+    margin-top: 22px;
+  }
+  .cp-youliao-sale-entry-subtitle {
+    font-size: 11px;
+    color: #aaa;
+    line-height: 15px;
+    margin-top: 2px;
+    height: 15px;
+  }
+  .cp-youliao-sale-entry-img-box {
+    width: 75px;
+    height: 75px;
+    margin: 3px auto 0;
+    > img {
+      width: 100%;
+    }
+  }
+}
