@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import AppHeader from './components/common/AppHeader'
 import AppFooter from './components/common/AppFooter'
 
+import { connect } from 'react-redux'
+
+import addNumbers from './store/actionCreators/addNumbers'
+
 class App extends Component {
   constructor () {
     super()
@@ -24,7 +28,7 @@ class App extends Component {
       let scrollTop = document.documentElement.scrollTop
       if (scrollTop >= 100) {
         this.setState({
-          isHidden: false
+          isHidden: true
         })
       } else {
         this.setState({
@@ -35,4 +39,16 @@ class App extends Component {
   }
 }
 
-export default App;
+let mapStateToProps = (store) => {
+  return store
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    addNumber () {
+      dispatch(addNumbers())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

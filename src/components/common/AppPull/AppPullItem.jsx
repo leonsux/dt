@@ -10,6 +10,7 @@ class AppPullItem extends Component {
     this.state = {}
   }
   toDetail (id) {
+    window.location.reload()
     hashHistory.push({
       pathname: '/blog/' + id
     })

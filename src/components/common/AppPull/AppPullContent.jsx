@@ -3,8 +3,6 @@ import axios from 'axios'
 
 import AppPullItem from './AppPullItem'
 
-// import AppBanner from './AppBanner'
-
 class AppPullContent extends Component {
   constructor (props) {
     super(props)
@@ -17,11 +15,12 @@ class AppPullContent extends Component {
       isLoading: true
     }
     this.scrollEvent = this.scrollEvent.bind(this)
+    this.getDate = this.getData.bind(this)
   }
   render () {
     let {leftList, rightList} = this.state
     return (
-      <div className="pull-content clear">
+      <div ref="myPull" className="pull-content clear">
         <div ref="leftList" className="pull-left clear">
           {
             leftList.map(item => {
@@ -39,19 +38,53 @@ class AppPullContent extends Component {
       </div>
     )
   }
-  getData () {
+  getData (isChangeTag, path, key) {
     this.setState({
       isLoading: true
     })
-    let { start, limit, leftList, rightList } = this.state
-    axios.get('/ky/napi/index/hot/', {
+    let outPath = ''
+    let cate_key = ''
+    let url = '/ky/napi/index/hot/'
+    let include_fields = 'sender,album'
+    let { start, limit, leftList, rightList } = this.state  
+
+    if (this.props.outParams) {
+      console.log("列表古来的")
+      url = this.props.outParams.url
+      include_fields = this.props.outParams.include_fields
+      cate_key = this.props.outParams.cate_key
+    }
+
+    if (isChangeTag) {
+      console.log("换换")
+      this.setState({
+        itemList: [],
+        leftList: [],
+        rightList: [],
+        start: 0,
+        limit: 24,
+        isLoading: true
+      })
+      leftList = []
+      rightList = []
+      console.log("你们很皮啊：", this.state)
+      outPath = path
+      cate_key = key
+    }
+
+    // 
+    console.log("请求参数：", start, include_fields, limit, cate_key, outPath)
+    axios.get(url, {
       params: {
         start: start,
-        include_fields:'sender,album',
+        include_fields: include_fields,
         limit: limit,
+        cate_key: cate_key,
+        path: outPath,
         _: new Date().getTime()
       }
     }).then(res => {
+      console.log("请求原结果：", res.data)
       let list = res.data.data.object_list
       let leftArr = leftList
       let rightArr = rightList
@@ -69,9 +102,11 @@ class AppPullContent extends Component {
           isLoading: !state.isLoading
         }
       })
+      console.log("请求结果", this.state.leftList)
     }).catch(res => {
       alert(res)
     })
+
   }
   componentWillMount () {
     this.getData()
@@ -79,7 +114,6 @@ class AppPullContent extends Component {
     window.addEventListener('scroll', this.scrollEvent)
   }
   scrollEvent () {
-    console.log("别这样", this)
     if (this.state.isLoading) { return }
     let scrollTop = document.documentElement.scrollTop
     let clientHeight = document.body.clientHeight
@@ -100,5 +134,8 @@ class AppPullContent extends Component {
   }
 }
 
-
 export default AppPullContent
+
+
+// https://www.duitang.com/napi/blog/list/by_category/?start=0&include_fields=sender%2Calbum%2Clike_count%2Cmsg&limit=24&cate_key=5017d172705cbe10c0000003&path=&_=1517035030220
+
