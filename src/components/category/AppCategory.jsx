@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router'
+import {Link, hashHistory} from 'react-router'
 import axios from 'axios'
 
 class AppCategory extends Component {
@@ -9,7 +9,7 @@ class AppCategory extends Component {
       data: [],
       list: []
     }
-  }
+ }
 
   componentWillMount () {
     axios.get('ky/napi/index/groups/', {
@@ -25,13 +25,16 @@ class AppCategory extends Component {
       console.log(this.state.list)
     })
   }
+
   render () {      
     let list = this.state.list.slice(1,7)
+    console.log(this.props.location.query)
     console.log(list)
     return (
       <div>
         <section id="content">
-          <div className="top">            
+          <div className="top">
+                          
               {
                  this.state.data?<div className="item-box">
                   {
@@ -53,7 +56,7 @@ class AppCategory extends Component {
                         item.group_items.map((ele,index)=>{
                             return (
                               <div key={index} className="bottom-item">
-                                <Link><span></span>{ele.name}</Link>
+                                <Link to={`/bloglist/:${ele.target.split('?')[1]}`}><span></span>{ele.name}</Link>
                               </div>)
                         })
                     }</div>)
@@ -67,3 +70,8 @@ class AppCategory extends Component {
 }
 
 export default AppCategory
+
+
+// {ele.target.split('?')[1]}
+
+// {`/bloglist/:${ele.target.split('?')[1]}`}
