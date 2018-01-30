@@ -15,7 +15,7 @@ ReactDOM.render(
     <Route path='/' component={App}>
       <IndexRoute component={AppMain} />
       <Route path='/blog/:id' component={AppBlogDetail}></Route>
-      <Route path='category' component={AppCategory}></Route>
+        <Route path='/category' component={AppCategory}></Route>
     </Route>
   </Router>
 , document.getElementById('root'));
