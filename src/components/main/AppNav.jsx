@@ -16,10 +16,12 @@ class AppNav extends Component {
               <span className="border"></span> 
             </Link>
           </div> 
-          <div> 
-            <span className="i i1 tmh" style={{backgroundImage: `url(${navImg})`}}></span><br/>
-            <span className="txt">商店</span> 
-            <span className="border"></span> 
+          <div>
+            <Link to={{pathname: 'appshop'}}>
+              <span className="i i1 tmh" style={{backgroundImage: `url(${navImg})`}}></span><br/>
+              <span className="txt">商店</span> 
+              <span className="border"></span>
+            </Link>
           </div> 
           <div>
             <Link to={{pathname: 'applist/5017d172705cbe10c0000007'}}>

@@ -71,7 +71,7 @@ class AppBlogDetail extends Component {
                 <div className="imgs">
                 {
                   item.covers.map(imgUrl => (
-                    <img src={tools.steal(imgUrl, 'thumb.200_200_c.')} alt=""/>
+                    <img key={imgUrl} src={tools.steal(imgUrl, 'thumb.200_200_c.')} alt=""/>
                   ))
                 }
                 </div>
