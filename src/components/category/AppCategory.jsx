@@ -10,7 +10,6 @@ class AppCategory extends Component {
       list: []
     }
  }
-
   componentWillMount () {
     axios.get('ky/napi/index/groups/', {
       params: {
@@ -41,7 +40,10 @@ class AppCategory extends Component {
                    this.state.data.map((item,i) =>(
                       
                       <div key={i} className="top-item"> 
-                        <Link><span></span>{item.name}</Link>
+                        {
+                          i===1?<Link to={'appshop'}><span></span>{item.name}</Link>:
+                            <Link to={`applist/${item.target.split('?')[1].split('=')[1]}`}><span></span>{item.name}</Link>
+                        }
                       </div>                     
                     ))
                   }
@@ -50,17 +52,21 @@ class AppCategory extends Component {
           </div>
           <div className="bottom">
             {
-              list ?
-                  list.map((item,i)=>{ 
-                    return (<div key={i}className="bottom-box">{
-                        item.group_items.map((ele,index)=>{
-                            return (
-                              <div key={index} className="bottom-item">
-                                <Link to={`/bloglist/:${ele.target.split('?')[1]}`}><span></span>{ele.name}</Link>
-                              </div>)
-                        })
-                    }</div>)
-                  }) :''
+              list?(list.map((item,i) => { 
+                return (
+                  <div key={i}className="bottom-box">
+                  {
+                    item.group_items.map((ele,index) => {
+                        return (
+                          <div key={index} className="bottom-item">
+                            <Link to={`applist/${ele.target.split('?')[1].split('=')[1]}`}><span></span>{ele.name}</Link>
+                          </div>
+                        )
+                    })
+                  }
+                  </div>
+                )
+              })):''
             }
           </div>
         </section>
