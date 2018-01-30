@@ -1,0 +1,23 @@
+.app-shop-pro {
+  position: relative;
+  .pt-line-title-white {
+    height: 64px;
+    text-align: center;
+    position: relative;
+    background-color: #fff;
+  }
+  .pt-line-title-white-ct {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: absolute;
+  .pt-line-title-white-text {
+    height: 24px;
+    line-height: 24px;
+    font-size: 17px;
+    color: #444;
+    margin: 18px 9px 22px 12px;
+    letter-spacing: 3px;
+  }
+  }
+}

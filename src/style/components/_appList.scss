@@ -1,0 +1,32 @@
+.list-category-1 {
+  position: relative;
+  padding: 18px 12px 6px 24px;
+  background-size: cover;
+  text-align: center;
+  .backend {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .35;
+  }
+  .content {
+    z-index: 1;
+    position: relative;
+    font-size: 0;
+    padding: 0 10px;
+    a {
+      margin: 0 12px 12px 0;
+      padding: 0 9px;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 34px;
+      display: inline-block;
+      color: #fff;
+    }
+  }
+}
