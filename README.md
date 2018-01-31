@@ -145,3 +145,8 @@ export default tools
   this.props.showInfo ? <div>信息</div> : ''
 }
 ```
+
+
+##### 真的皮
+
+时间戳缩小了1000倍

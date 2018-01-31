@@ -52,7 +52,6 @@ class AppShop extends Component {
         timestamp: new Date().getTime()
       }
     }).then(res => {
-      console.log(res.data.data.object_list)
       this.setState({
         sales: res.data.data.object_list
       })

@@ -11,13 +11,145 @@
     width: 100%;
     justify-content: center;
     position: absolute;
-  .pt-line-title-white-text {
+    .pt-line-title-white-text {
+      height: 24px;
+      line-height: 24px;
+      font-size: 17px;
+      color: #444;
+      margin: 18px 9px 22px 12px;
+      letter-spacing: 3px;
+    }
+  }
+}
+.pg-youliao-group-item {
+  padding-bottom: 16px;
+  .swiper-banners {
+    height: 188px;
+    position: relative;
+    > img {
+      width: 100%;
+    }
+    .pro-intro {
+      z-index: 10;
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      left: 0;
+      top: 40%;
+      color: #fff;
+      > h3 {
+        font-weight: 400;
+      }
+      > h2 {
+        font-size: 23px;
+        line-height: 37px;
+        font-weight: 700;
+        text-shadow: none;
+      }
+      > div {
+        letter-spacing: 1px;
+        margin: 0 auto;
+        margin-top: 12px;
+        width: 98px;
+        height: 30px;
+        border-radius: 15px;
+        font-size: 12px;
+        line-height: 30px;
+        color: #fff;
+        background-size: 100% 100%;
+        background-image: url(//a-ssl.duitang.com/uploads/people/201607/27/20160727150854_r8y5X.png);
+      }
+    }
+  }
+  .backend {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-radial-gradient(ellipse,rgba(0,0,0,.3),rgba(0,0,0,.2));
+    background: radial-gradient(ellipse,rgba(0,0,0,.3),rgba(0,0,0,.2));
+    text-shadow: 0 0.5px 1px rgba(0,0,0,.3);
+  }
+}
+.swiper-freemode {
+  width: 100%;
+  padding: 12px 0 0 12px;
+  background-color: #fff;
+  overflow: auto;
+  > div {
+    // width: 500%;
+  }
+  .swiper-item-foreshow {
+    width: 90px;
+    margin-right: 10px;
+    display: inline-block;
+    img {
+      width: 100%;
+    }
+    > p {
+      padding: 12px 0;
+      color: #444;
+      font-size: 11px;
+      margin-bottom: 12px;
+      line-height: 15px;
+      width: 90px;
+      max-height: 30px;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    > span {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      color: #ff5959;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}
+
+.swiper-container-text {
+  width: 200px;
+  height: 109px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid hsla(0,0%,100%,.9);
+  z-index: 30;
+  .pg-vipsale-txt-cont {
+    margin: 5px;
+    height: 99px;
+    background: hsla(0,0%,100%,.9);
+    color: #444;
+  }
+  .pg-vipsale-title {
+    margin: 13px 0 5px;
+    display: inline-block;
     height: 24px;
     line-height: 24px;
-    font-size: 17px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: 400;
     color: #444;
-    margin: 18px 9px 22px 12px;
-    letter-spacing: 3px;
   }
+}
+.pg-title-time {
+  margin-bottom: 10px;
+  > span {
+    display: inline-block;
+    border: 1px solid #777;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    color: #777;
+    font-size: 12px;
+    text-align: center;
   }
 }

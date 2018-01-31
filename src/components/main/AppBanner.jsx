@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import { Carousel } from 'antd-mobile'
 
+import tools from '../../utils/tools'
+
 class AppBanner extends Component {
   constructor () {
     super()
@@ -33,7 +35,7 @@ class AppBanner extends Component {
                 <span style={{ position: 'absolute', display: 'block', width: '100%', height: '100%', background: '#000', opacity: '0.2', zIndex: '1'}}></span>
                 <img
                   ref={val.album_id}
-                  src={val.image.slice(0, 70)+'thumb.600_0_c.'+val.image.slice(70)}
+                  src={tools.steal(val.image, 'thumb.600_0_c.')}
                   alt=""
                   style={{ width: '100%', verticalAlign: 'top', height: '100%' }}
                   onLoad={() => {
@@ -58,10 +60,12 @@ class AppBanner extends Component {
         app_code: 'mdt'
       }
     })
-    .then(res =>{
+    .then(res => {
       this.setState({banners: res.data.data.object_list})
     })
   }
 }
 
 export default AppBanner
+
+// val.image.slice(0, 70)+'thumb.600_0_c.'+val.image.slice(70)
