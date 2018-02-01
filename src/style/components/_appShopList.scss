@@ -1,0 +1,44 @@
+.pg-single-content {
+  width: 100%;
+  padding-left: 4%;
+  background-color: #fff;
+  .cp-shop-item {
+    width: 50%;
+    padding-right: 12px;
+    box-sizing: border-box;
+    text-align: left;
+    float: left;
+    margin-bottom: 30px;
+    > img {
+      width: 100%;
+    }
+    .sale-title {
+      margin-top: 12px;
+      font-size: 13px;
+      line-height: 15px;
+      font-weight: 700;
+      color: #444;
+      height: 15px;
+      overflow: hidden;
+    }
+    .sale-intro {
+      overflow: hidden;
+      margin-top: 4px;
+      font-size: 13px;
+      line-height: 15px;
+      color: #aaa;
+      height: 30px;
+      text-overflow: ellipsis;
+    }
+    .sale-count {
+      margin-top: 18px;
+      font-size: 11px;
+      line-height: 15px;
+      color: #aaa;
+    }
+    .sale-price {
+      color: #ff5959;
+      font-size: 16px;
+    }
+  }
+}

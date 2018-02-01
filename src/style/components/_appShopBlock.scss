@@ -1,0 +1,26 @@
+.pt-title-white{
+  // height: 64px;
+  width: 100%;
+  text-align: center;
+  // position: relative;
+  background-color: #fff;
+}
+.pt-line-title-white-cts {
+  position: static;
+  display: flex;
+  justify-content: center;
+}
+  .pt-line-title-white-text {
+    height: 24px;
+    line-height: 24px;
+    font-size: 17px;
+    color: #444;
+    margin: 18px 9px 22px 12px;
+    letter-spacing: 3px;
+  }
+  .pt-line-title-white-line {
+    width: 9px;
+    height: 1px;
+    background-color: #dbdbdb;
+    margin-top: 30px;
+  }

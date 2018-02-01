@@ -22,8 +22,8 @@ h1, h2, h3 {
   }
 }
 
-.clear::after{
-  content: '';
+.clear:after{
+  content: '.';
   display: block;
   clear: both;
   visibility:hidden;

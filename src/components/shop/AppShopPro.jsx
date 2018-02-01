@@ -4,17 +4,23 @@ import axios from 'axios'
 
 import tools from '../../utils/tools'
 
+import AppShopBlock from './AppShopBlock'
+
 class AppShopPro extends Component {
   constructor (props) {
     super(props)
     this.state = {
       pro_list: [],
-      second: ''
+      second: '',
+      start: 0,
+      isLoading: true,
+      block_list: []
     }
+    this.scrollEvent = this.scrollEvent.bind(this)
   }
   render () {
     let that = this
-    let {pro_list} = this.state
+    let {pro_list, block_list} = this.state
     return (
       <div className="app-shop-pro">
         <img src="https://b-ssl.duitang.com/uploads/item/201712/27/20171227135914_rXLdY.png" alt="" style={{position: 'absolute', width: '100%', zIndex: '100', marginTop: '15px'}} />
@@ -92,24 +98,71 @@ class AppShopPro extends Component {
             }
           })
         }
+        {/**/}
+        {
+          block_list.map((item, index) => (
+            <AppShopBlock key={index} info={item} />
+          ))
+        }
       </div>
     )
   }
-  componentWillMount () {
+  scrollEvent () {
+    if (this.state.isLoading) { return }
+    let scrollTop = document.documentElement.scrollTop
+    let clientHeight = document.body.clientHeight
+    let scrollHeight = document.documentElement.scrollHeight
+    if (scrollTop >= scrollHeight - clientHeight - 1000) {
+      if (this.state.start + 5 >= 15) {
+        window.removeEventListener('scroll', this.scrollEvent)
+        axios.get('ky/napi/buy/inventory/list/by_cat/recommend/', {
+          params: {
+            timestamp: new Date().getTime()
+          }
+        }).then(res => {
+          // 获取完pro后获取
+          // console.log(res.data.data.object_list)
+          this.setState({
+            block_list: res.data.data.object_list
+          })
+        })
+      }
+      this.setState(state => {
+        return {
+          start: state.start + 5
+        }
+      })
+      this.getData()
+    }
+  }
+  getData () {
+    this.setState({
+      isLoading: true
+    })
     axios.get('ky/napi/buy/index/popular/list/', {
       params: {
-        start: 0,
+        start: this.state.start,
         limit: 5,
         timestamp: new Date().getTime()
       }
     }).then(res => {
-      console.log(this.state.pro_list)
+      let arr = this.state.pro_list.concat(res.data.data.object_list)
       this.setState({
-        pro_list: res.data.data.object_list
+        pro_list: arr,
+        isLoading: false
       })
-      console.log(this.state.pro_list)
+      // console.log(this.state.pro_list)
 
-    })
+    }) 
+  }
+  componentWillMount () {
+    this.getData()
+    window.addEventListener('scroll', this.scrollEvent)
+  }
+  componentWillUnmount () {
+    // 切换到其他组件的时候把滚动监听取消掉，不然后果很可怕
+    window.removeEventListener('scroll', this.scrollEvent)
+    // console.log("我要死了")
   }
 }
 
@@ -124,3 +177,5 @@ export default AppShopPro
 // 1517360402
 
 // 1517360402000
+
+// napi/buy/inventory/list/by_cat/recommend/
