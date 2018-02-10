@@ -1,3 +1,20 @@
+# 启动方式
+
+1. `npm i`
+
+2. 在`node_modules`中找到`react-scripts`文件夹，修改`config`文件夹下`webpack.config.dev.js`中的配置（Sass编译）如下图
+  
+  ![配置sass](http://upload-images.jianshu.io/upload_images/3629578-f071cb75d7ea4755.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+3. 在`node_modules`中找到`react-scripts`文件夹，修改`config`文件夹下`webpackDevServer.config.js`中的配置（跨域）如下图
+
+  ![配置跨域](http://upload-images.jianshu.io/upload_images/3629578-e2eeaa1550a61353.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+4. `npm start`
+
+# 日志
+
 ### 关于antd-mobile跑马灯默认图片问题
 
 当图片的地址有误导致图片加载失败时，我们需要显示一张error默认图片

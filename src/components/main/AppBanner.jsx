@@ -35,7 +35,7 @@ class AppBanner extends Component {
                 <span style={{ position: 'absolute', display: 'block', width: '100%', height: '100%', background: '#000', opacity: '0.2', zIndex: '1'}}></span>
                 <img
                   ref={val.album_id}
-                  src={tools.steal(val.image, 'thumb.600_0_c.')}
+                  src={tools.steal(val.image, 'thumb.600_0_c')}
                   alt=""
                   style={{ width: '100%', verticalAlign: 'top', height: '100%' }}
                   onLoad={() => {
@@ -54,7 +54,7 @@ class AppBanner extends Component {
       </div>
     )
   }
-  componentWillMount () {
+  componentDidMount () {
     axios.get('/ky/napi/mbanner/', {
       params: {
         app_code: 'mdt'

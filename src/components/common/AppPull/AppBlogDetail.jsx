@@ -25,11 +25,11 @@ class AppBlogDetail extends Component {
       <div>
         {blogInfo.photo?
         <div className="blog-info">
-          <img src={tools.steal(blogInfo.photo.path, 'thumb.400_0.')} style={{height: blogInfo.photo.height*350/blogInfo.photo.width}} alt="" />
+          <img src={tools.steal(blogInfo.photo.path, 'thumb.400_0')} style={{height: blogInfo.photo.height*350/blogInfo.photo.width}} alt="" />
           <div className="blog-intro">
             <h1>{blogInfo.msg}</h1>
             <div className="sender">
-              <img src={tools.steal(blogInfo.sender.avatar, 'thumb.100_100_c.')} alt=""/>
+              <img src={tools.steal(blogInfo.sender.avatar, 'thumb.100_100_c')} alt=""/>
               <p>
                 <i className="name">{blogInfo.sender.username}</i><br/>
                 <span className="album">收集到&nbsp;&nbsp;{blogInfo.album.name}</span>
@@ -71,7 +71,7 @@ class AppBlogDetail extends Component {
                 <div className="imgs">
                 {
                   item.covers.map(imgUrl => (
-                    <img key={imgUrl} src={tools.steal(imgUrl, 'thumb.200_200_c.')} alt=""/>
+                    <img key={imgUrl} src={tools.steal(imgUrl, 'thumb.200_200_c')} alt=""/>
                   ))
                 }
                 </div>

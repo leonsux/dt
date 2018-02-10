@@ -111,13 +111,15 @@ class AppPullContent extends Component {
   componentWillMount () {
     this.getData()
     // 滚动事件
-    window.addEventListener('scroll', this.scrollEvent)
+    window.addEventListener('touchmove', this.scrollEvent)
   }
   scrollEvent () {
+
     if (this.state.isLoading) { return }
     let scrollTop = document.documentElement.scrollTop
     let clientHeight = document.body.clientHeight
     let scrollHeight = document.documentElement.scrollHeight
+    console.log(scrollTop)
     if (scrollTop >= scrollHeight - clientHeight - 1000) {
       this.setState(state => {
         return {
@@ -129,7 +131,7 @@ class AppPullContent extends Component {
   }
   componentWillUnmount () {
     // 切换到其他组件的时候把滚动监听取消掉，不然后果很可怕
-    window.removeEventListener('scroll', this.scrollEvent)
+    window.removeEventListener('touchmove', this.scrollEvent)
     // console.log("我要死了")
   }
 }

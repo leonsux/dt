@@ -34,7 +34,7 @@ class AppShopPro extends Component {
                   <div key={index} className="pg-youliao-group-item">
                     <div className="swiper-banners">
                       {item.stitle?<div className="backend"></div>:''}
-                      <img src={tools.steal(item.image_url?item.image_url:'','thumb.750_0_c.')} alt=""/>
+                      <img src={tools.steal(item.image_url?item.image_url:'','thumb.750_0_c')} alt=""/>
                       <div className="pro-intro">
                         <h3>{item.stitle}</h3>
                         <h2>{item.description}</h2>
@@ -47,7 +47,7 @@ class AppShopPro extends Component {
                         item.inventory_list.map((value, i) => (
                           <div key={i} className="swiper-item-foreshow">
                             {/*{console.log("恩恩", value)}*/}
-                            <img src={tools.steal(value.carousel_pictures[0].picture, 'thumb.200_200_c.')} alt=""/>
+                            <img src={tools.steal(value.carousel_pictures[0].picture, 'thumb.200_200_c')} alt=""/>
                             <p>{value.inventory_caption}</p>
                             <span>￥{value.sale_price}</span>
                           </div>
@@ -64,7 +64,7 @@ class AppShopPro extends Component {
                   <div key={index} className="pg-youliao-group-item">
                     <div className="swiper-banners">
                       <div className="backend"></div>
-                      <img src={tools.steal(item.image_url?item.image_url:'','thumb.750_0_c.')} alt=""/>
+                      <img src={tools.steal(item.image_url?item.image_url:'','thumb.750_0_c')} alt=""/>
                       <div className="swiper-container-text">
                         <div className="pg-vipsale-txt-cont">
                           <h2 className="pg-vipsale-title">{item.description}</h2>
@@ -84,7 +84,7 @@ class AppShopPro extends Component {
                         item.inventory_list.map((value, i) => (
                           <div key={i} className="swiper-item-foreshow">
                             {/*{console.log("恩恩", value)}*/}
-                            <img src={tools.steal(value.carousel_pictures[0].picture, 'thumb.200_200_c.')} alt=""/>
+                            <img src={tools.steal(value.carousel_pictures[0].picture, 'thumb.200_200_c')} alt=""/>
                             <p>{value.inventory_caption}</p>
                             <span>￥{value.sale_price}</span>
                           </div>
@@ -155,7 +155,7 @@ class AppShopPro extends Component {
 
     }) 
   }
-  componentWillMount () {
+  componentDidMount () {
     this.getData()
     window.addEventListener('scroll', this.scrollEvent)
   }

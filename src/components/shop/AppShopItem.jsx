@@ -8,7 +8,7 @@ class AppShopItem extends Component {
     return (
       <div className="cp-shop-item">
         {/*{info.pictures[0]}       */}
-        <img src={tools.steal(info.pictures[0], 'thumb.400_400_c.')} alt=""/>
+        <img src={tools.steal(info.pictures[0], 'thumb.400_400_c')} alt=""/>
         <div>
           <h5 className="sale-title">{info.inventory_caption}</h5>
           <p className="sale-intro">{info.inventory_name}</p>
